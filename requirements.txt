@@ -1,0 +1,9 @@
+flask==2.0.1
+requests==2.27.1
+pytest==7.0.0
+pytest-cov==3.0.0
+robotframework==5.0.1
+robotframework-seleniumlibrary==6.0.0
+robotframework-requests==0.9.3
+selenium==4.1.0
+webdrivermanager==0.10.0

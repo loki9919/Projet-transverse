@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.11.9 on win32)" generated="2025-05-19T22:46:15.628122" rpa="false" schemaversion="5">
+<suite id="s1" name="Ui Tests" source="C:\Users\lokma\Projet-transverse\ui_tests">
+<suite id="s1-s1" name="Connexions-Invalides" source="C:\Users\lokma\Projet-transverse\ui_tests\connexions-invalides.robot">
+<test id="s1-s1-t1" name="Test Utilisateur Valide Mot De Passe Non Valide" line="11">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:16.066651" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:16.066651" elapsed="7.847372"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:23.914023" elapsed="0.064557"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:16.066651" elapsed="7.911929"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:23.985877" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:23.984878" elapsed="0.206198"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:23.981581" elapsed="0.209495"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:24.192304" elapsed="0.267300"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:24.459604" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:24.459604" elapsed="0.122085"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:24.581689" level="INFO">Typing text 'robot' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:24.581689" elapsed="0.172994"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:24.191076" elapsed="0.563607"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:24.755698" level="INFO">Typing text 'faux' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:24.755698" elapsed="0.096383"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:24.754683" elapsed="0.097398"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:24.852081" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:24.852081" elapsed="0.129069"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:24.852081" elapsed="0.129069"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:24.982171" elapsed="0.689238"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:24.982171" elapsed="0.689238"/>
+</kw>
+<arg>robot</arg>
+<arg>faux</arg>
+<status status="PASS" start="2025-05-19T22:46:23.979575" elapsed="1.691834"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:16.066651" elapsed="9.604758"/>
+</test>
+<test id="s1-s1-t2" name="Test Utilisateur Non Valide Mot De Passe Non Valide" line="12">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:25.679645" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:25.679645" elapsed="3.533846"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:29.213491" elapsed="0.061074"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:25.679645" elapsed="3.594920"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:29.283684" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:29.283684" elapsed="0.165187"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:29.274565" elapsed="0.174306"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:29.450149" elapsed="0.263885"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:29.716045" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:29.716045" elapsed="0.126727"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:29.842772" level="INFO">Typing text 'faux' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:29.842772" elapsed="0.120614"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:29.448871" elapsed="0.514515"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:29.968861" level="INFO">Typing text 'faux' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:29.968861" elapsed="0.102489"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:29.963386" elapsed="0.107964"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:30.071350" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:30.071350" elapsed="0.135094"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:30.071350" elapsed="0.135094"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:30.208487" elapsed="0.459014"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:30.206444" elapsed="0.461057"/>
+</kw>
+<arg>faux</arg>
+<arg>faux</arg>
+<status status="PASS" start="2025-05-19T22:46:29.274565" elapsed="1.392936"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:25.679645" elapsed="4.987856"/>
+</test>
+<test id="s1-s1-t3" name="Test Utilisateur Non Valide Mot De Passe Valide" line="13">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:30.667501" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:30.667501" elapsed="3.428415"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.095916" elapsed="0.066409"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:30.667501" elapsed="3.494824"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:34.164392" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.163360" elapsed="0.174896"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:34.163360" elapsed="0.176033"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.339393" elapsed="0.242536"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:34.581929" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.581929" elapsed="0.105366"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:34.688338" level="INFO">Typing text 'faux' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.687813" elapsed="0.106763"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:34.339393" elapsed="0.455183"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:34.795598" level="INFO">Typing text 'robot' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.795598" elapsed="0.122261"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:34.794576" elapsed="0.123283"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:34.917859" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:34.917859" elapsed="0.115845"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:34.917859" elapsed="0.115845"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:35.033704" elapsed="0.450139"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:35.033704" elapsed="0.450139"/>
+</kw>
+<arg>faux</arg>
+<arg>robot</arg>
+<status status="PASS" start="2025-05-19T22:46:34.162325" elapsed="1.321518"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:30.667501" elapsed="4.816342"/>
+</test>
+<test id="s1-s1-t4" name="Test Utilisateur Vide Mot De Passe Non Valide" line="14">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:35.499922" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:35.499922" elapsed="3.756960"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:39.256882" elapsed="0.073110"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:35.499922" elapsed="3.830070"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:39.333058" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:39.332041" elapsed="0.209096"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:39.332041" elapsed="0.210092"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:39.543131" elapsed="0.255474"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:39.798605" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:39.798605" elapsed="0.103144"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:39.902760" level="INFO">Typing text '' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:39.901749" elapsed="0.142103"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:39.542133" elapsed="0.501719"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:40.043852" level="INFO">Typing text 'faux' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:40.043852" elapsed="0.113673"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:40.043852" elapsed="0.113673"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:40.157525" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:40.157525" elapsed="0.116197"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:40.157525" elapsed="0.116197"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:40.273722" elapsed="0.465391"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:40.273722" elapsed="0.465391"/>
+</kw>
+<arg>${EMPTY}</arg>
+<arg>faux</arg>
+<status status="PASS" start="2025-05-19T22:46:39.331014" elapsed="1.408099"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:35.483843" elapsed="5.255270"/>
+</test>
+<test id="s1-s1-t5" name="Test Utilisateur Vide Mot De Passe Valide" line="15">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:40.739113" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:40.739113" elapsed="3.635163"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:44.375270" elapsed="0.089170"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:40.739113" elapsed="3.725327"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:44.467096" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:44.467096" elapsed="0.193900"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:44.467096" elapsed="0.193900"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:44.663043" elapsed="0.251872"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:44.914915" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:44.914915" elapsed="0.104428"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:45.019343" level="INFO">Typing text '' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:45.019343" elapsed="0.134075"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:44.662034" elapsed="0.491384"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:45.153418" level="INFO">Typing text 'robot' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:45.153418" elapsed="0.117690"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:45.153418" elapsed="0.117690"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:45.271108" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:45.271108" elapsed="0.125201"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:45.271108" elapsed="0.125729"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:45.396837" elapsed="0.470171"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:45.396837" elapsed="0.470171"/>
+</kw>
+<arg>${EMPTY}</arg>
+<arg>robot</arg>
+<status status="PASS" start="2025-05-19T22:46:44.466079" elapsed="1.400929"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:40.739113" elapsed="5.127895"/>
+</test>
+<test id="s1-s1-t6" name="Test Utilisateur Valide Mot De Passe Vide" line="16">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:45.867008" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:45.867008" elapsed="3.457641"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:49.324649" elapsed="0.074707"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:45.867008" elapsed="3.533352"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:49.405834" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:49.405834" elapsed="0.174170"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:49.403821" elapsed="0.176183"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:49.581127" elapsed="0.234673"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:49.815800" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:49.815800" elapsed="0.145758"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:49.961558" level="INFO">Typing text 'robot' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:49.961558" elapsed="0.158831"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:49.581127" elapsed="0.539262"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:50.121709" level="INFO">Typing text '' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:50.121709" elapsed="0.098980"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:50.120389" elapsed="0.100300"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:50.220689" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:50.220689" elapsed="0.127281"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:50.220689" elapsed="0.127281"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:50.347970" elapsed="0.436863"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:50.347970" elapsed="0.436863"/>
+</kw>
+<arg>robot</arg>
+<arg>${EMPTY}</arg>
+<status status="PASS" start="2025-05-19T22:46:49.401364" elapsed="1.383469"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:45.867008" elapsed="4.917825"/>
+</test>
+<test id="s1-s1-t7" name="Test Utilisateur Non Valide Mot De Passe Vide" line="17">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:50.784833" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:50.784833" elapsed="3.706737"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:54.491570" elapsed="0.084709"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:50.784833" elapsed="3.791446"/>
+</kw>
+<kw name="Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte">
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:54.579533" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:54.579533" elapsed="0.190557"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:54.578475" elapsed="0.192623"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:54.771098" elapsed="0.244535"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:55.015633" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:55.015633" elapsed="0.116195"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:55.131828" level="INFO">Typing text 'faux' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:55.131828" elapsed="0.145870"/>
+</kw>
+<arg>${nom utilisateur}</arg>
+<status status="PASS" start="2025-05-19T22:46:54.771098" elapsed="0.506600"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:55.278723" level="INFO">Typing text '' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:55.277698" elapsed="0.092846"/>
+</kw>
+<arg>${mot de passe}</arg>
+<status status="PASS" start="2025-05-19T22:46:55.277698" elapsed="0.092846"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:55.370544" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:55.370544" elapsed="0.124857"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:55.370544" elapsed="0.124857"/>
+</kw>
+<kw name="Vérifier Que Le Message D'Erreur Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ZONE ERREUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:55.495401" elapsed="0.452239"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:55.495401" elapsed="0.452239"/>
+</kw>
+<arg>faux</arg>
+<arg>${EMPTY}</arg>
+<status status="PASS" start="2025-05-19T22:46:54.577459" elapsed="1.370181"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:50.784833" elapsed="5.162807"/>
+</test>
+<status status="PASS" start="2025-05-19T22:46:15.675991" elapsed="40.272660"/>
+</suite>
+<suite id="s1-s2" name="Connexions-Valides" source="C:\Users\lokma\Projet-transverse\ui_tests\connexions-valides.robot">
+<test id="s1-s2-t1" name="Le Tableau De Bord Doit Etre Visible Apres Une Connexion Réussie" line="7">
+<kw name="Effectuer Une Connexion Réussie" type="SETUP">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:55.952648" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:46:55.952648" elapsed="3.566905"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:46:59.519553" elapsed="0.088587"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:55.952648" elapsed="3.655492"/>
+</kw>
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:46:59.610172" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:46:59.609668" elapsed="0.181840"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:59.609156" elapsed="0.182925"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:46:59.792918" elapsed="0.240454"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:00.033372" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:00.033372" elapsed="0.117883"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:00.152748" level="INFO">Typing text 'robot' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:00.151255" elapsed="0.151475"/>
+</kw>
+<arg>${UTILISATEUR VALIDE}</arg>
+<status status="PASS" start="2025-05-19T22:46:59.792404" elapsed="0.510326"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:00.302730" level="INFO">Typing text 'robot' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:00.302730" elapsed="0.117548"/>
+</kw>
+<arg>${MOT DE PASSE VALIDE}</arg>
+<status status="PASS" start="2025-05-19T22:47:00.302730" elapsed="0.117548"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:00.421110" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:00.421110" elapsed="0.108005"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:00.420278" elapsed="0.108837"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:55.952648" elapsed="4.576467"/>
+</kw>
+<kw name="Vérifier Que Le Tableau De Bord Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LIEN SE DECONNECTER}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:47:00.529115" elapsed="1.435348"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:01.971685" level="INFO">Page title is 'Tableau de bord - Livraison 3'.</msg>
+<arg>${TITRE PAGE TABLEAU DE BORD}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-05-19T22:47:01.964463" elapsed="0.007222"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:00.529115" elapsed="1.442570"/>
+</kw>
+<kw name="Effectuer Une Déconnexion Réussie" type="TEARDOWN">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:01.972694" level="INFO">Clicking element 'xpath=(//a[contains(text(),'Se déconnecter')])[3]'.</msg>
+<arg>${LIEN SE DECONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:01.972694" elapsed="1.316557"/>
+</kw>
+<kw name="Wait Until Element Is Not Visible" owner="SeleniumLibrary">
+<arg>${LIEN SE DECONNECTER}</arg>
+<doc>Waits until the element ``locator`` is not visible.</doc>
+<status status="PASS" start="2025-05-19T22:47:03.290258" elapsed="0.024275"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:01.972694" elapsed="1.341839"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:46:55.952648" elapsed="7.361885"/>
+</test>
+<test id="s1-s2-t2" name="Le Lien De Deconnexion Devrait Etre Visible Après Une Déconnexion Réussie" line="13">
+<kw name="Effectuer Une Connexion Réussie" type="SETUP">
+<kw name="Ouvrir Le Navigateur Et Accéder A L'Application" owner="commun">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:03.317212" level="INFO">Opening browser 'chrome' to base url 'http://livraison3.testacademy.fr'.</msg>
+<arg>${URL}</arg>
+<arg>${NAVIGATEUR}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-19T22:47:03.317212" elapsed="3.672391"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-19T22:47:06.989603" elapsed="0.076641"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:03.317212" elapsed="3.749032"/>
+</kw>
+<kw name="Accéder A La Page De Connexion" owner="commun">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:07.068294" level="INFO">Clicking element 'xpath=//a[contains(text(),'Se connecter')]'.</msg>
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:07.067778" elapsed="0.176802"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:07.067266" elapsed="0.177314"/>
+</kw>
+<kw name="Saisir Le Nom D'Utilisateur" owner="commun">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:47:07.245573" elapsed="0.253969"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:07.499542" level="INFO">Clicking element 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:07.499542" elapsed="0.105316"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:07.606383" level="INFO">Typing text 'robot' into text field 'name=username'.</msg>
+<arg>${CHAMP NOM UTILISATEUR}</arg>
+<arg>${utilisateur valide}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:07.604858" elapsed="0.153081"/>
+</kw>
+<arg>${UTILISATEUR VALIDE}</arg>
+<status status="PASS" start="2025-05-19T22:47:07.245573" elapsed="0.512366"/>
+</kw>
+<kw name="Saisir Le Mot De Passe" owner="commun">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:07.758956" level="INFO">Typing text 'robot' into text field 'name=password'.</msg>
+<arg>${CHAMP MOT DE PASSE}</arg>
+<arg>${mot de passe}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:07.758956" elapsed="0.132004"/>
+</kw>
+<arg>${MOT DE PASSE VALIDE}</arg>
+<status status="PASS" start="2025-05-19T22:47:07.757939" elapsed="0.133021"/>
+</kw>
+<kw name="Soumette Le Formulaire De Connexion" owner="commun">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:07.890960" level="INFO">Clicking button 'css=.homey_login_button'.</msg>
+<arg>${BOUTON SE CONNECTER}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:07.890960" elapsed="0.120805"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:07.890960" elapsed="0.120805"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:03.316198" elapsed="4.695567"/>
+</kw>
+<kw name="Vérifier Que Le Tableau De Bord Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LIEN SE DECONNECTER}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:47:08.012766" elapsed="1.724202"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:09.742970" level="INFO">Page title is 'Tableau de bord - Livraison 3'.</msg>
+<arg>${TITRE PAGE TABLEAU DE BORD}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2025-05-19T22:47:09.736968" elapsed="0.006999"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:08.012766" elapsed="1.731201"/>
+</kw>
+<kw name="Effectuer Une Déconnexion Réussie">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-19T22:47:09.744967" level="INFO">Clicking element 'xpath=(//a[contains(text(),'Se déconnecter')])[3]'.</msg>
+<arg>${LIEN SE DECONNECTER}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-19T22:47:09.743967" elapsed="1.265595"/>
+</kw>
+<kw name="Wait Until Element Is Not Visible" owner="SeleniumLibrary">
+<arg>${LIEN SE DECONNECTER}</arg>
+<doc>Waits until the element ``locator`` is not visible.</doc>
+<status status="PASS" start="2025-05-19T22:47:11.009562" elapsed="0.041837"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:09.743967" elapsed="1.307432"/>
+</kw>
+<kw name="Vérifier Que Le Lien De Connexion Est Visible">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LIEN SE CONNECTER}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-19T22:47:11.051904" elapsed="0.022135"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:11.051904" elapsed="0.022135"/>
+</kw>
+<status status="PASS" start="2025-05-19T22:47:03.316198" elapsed="7.758840"/>
+</test>
+<status status="PASS" start="2025-05-19T22:46:55.949647" elapsed="15.126394"/>
+</suite>
+<status status="PASS" start="2025-05-19T22:46:15.628122" elapsed="55.448919"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Ui Tests" id="s1" pass="9" fail="0" skip="0">Ui Tests</stat>
+<stat name="Connexions-Invalides" id="s1-s1" pass="7" fail="0" skip="0">Ui Tests.Connexions-Invalides</stat>
+<stat name="Connexions-Valides" id="s1-s2" pass="2" fail="0" skip="0">Ui Tests.Connexions-Valides</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
