@@ -18,7 +18,7 @@ pipeline {
         
         stage('Unit Tests') {
             steps {
-                bat 'python test_unit.py'
+                bat './lancer_tests_unitaires.bat'
             }
             post {
                 always {
@@ -39,7 +39,7 @@ pipeline {
         
         stage('API Tests') {
             steps {
-                bat 'python test_api.py'
+                bat './lancer_tests_api.bat'
             }
             post {
                 always {
@@ -50,7 +50,7 @@ pipeline {
         
         stage('UI Tests') {
             steps {
-                bat 'robot --outputdir results test_ui.robot'
+                bat './lancer_tests_ui.bat'
             }
             post {
                 always {

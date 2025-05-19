@@ -3,7 +3,7 @@ import json
 from app import app, listings, init_sample_data
 
 class HomeyApiUnitTests(unittest.TestCase):
-    
+
     def setUp(self):
         # Create a test client
         self.app = app.test_client()
