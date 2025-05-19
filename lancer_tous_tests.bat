@@ -20,5 +20,3 @@ if errorlevel 1 exit /b 1
 echo Tous les tests sont passés avec succès !
 rem Message final si tout s’est bien passé
 
-pause
-rem Garde la fenêtre ouverte
