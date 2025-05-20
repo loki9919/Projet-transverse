@@ -8,37 +8,37 @@ pipeline {
     }
     
     stages {
-        stage('Build') {
+        stage('Construction du projet') { // Étape 1 : Installer les dépendances
             steps {
                 bat 'python -m pip install --upgrade pip'
                 bat 'pip install -r requirements.txt'
-                echo 'Build completed'
+                echo 'Construction terminée'
             }
         }
         
-        stage('Unit Tests') {
+        stage('Tests unitaires') { // Étape 2 : Lancer les tests unitaires
             steps {
                 bat './lancer_tests_unitaires.bat || exit /b 1'
             }
         }
         
-        stage('Start API Server') {
+        stage('Démarrage du serveur API') { // Étape 3 : Démarrer l’API localement
             steps {
                 script {
                     bat 'start /B python app.py'
-                    // Allow time for the server to start using ping instead of timeout
+                    // Attendre le démarrage du serveur (en utilisant ping au lieu de timeout)
                     bat 'ping -n 6 127.0.0.1 > nul'
                 }
             }
         }
         
-        stage('API Tests') {
+        stage('Tests de l’API') { // Étape 4 : Exécuter les tests API
             steps {
                 bat './lancer_tests_api.bat || exit /b 1'
             }
         }
         
-        stage('UI Tests') {
+        stage('Tests de l’interface utilisateur') { // Étape 5 : Exécuter les tests UI
             steps {
                 bat './lancer_tests_ui.bat || exit /b 1'
             }
@@ -47,14 +47,14 @@ pipeline {
     
     post {
         always {
-            // Stop the API server
+            // Arrêter le serveur API
             bat 'taskkill /f /im python.exe /fi "WINDOWTITLE eq app.py" || exit /b 0'
         }
         success {
-            echo 'All tests passed!'
+            echo 'Tous les tests ont réussi !'
         }
         failure {
-            echo 'Tests failed'
+            echo 'Échec des tests'
         }
     }
 }
