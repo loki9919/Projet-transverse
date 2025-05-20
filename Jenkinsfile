@@ -18,7 +18,7 @@ pipeline {
         
         stage('Unit Tests') {
             steps {
-                bat './lancer_tests_unitaires.bat'
+                bat './lancer_tests_unitaires.bat || exit /b 1'
             }
         }
         
@@ -34,13 +34,13 @@ pipeline {
         
         stage('API Tests') {
             steps {
-                bat './lancer_tests_api.bat'
+                bat './lancer_tests_api.bat || exit /b 1'
             }
         }
         
         stage('UI Tests') {
             steps {
-                bat './lancer_tests_ui.bat'
+                bat './lancer_tests_ui.bat || exit /b 1'
             }
         }
     }
