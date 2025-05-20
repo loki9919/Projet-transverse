@@ -20,11 +20,11 @@ pipeline {
             steps {
                 bat './lancer_tests_unitaires.bat'
             }
-            // post {
-            //     always {
-            //         junit 'unit-test-results.xml'
-            //     }
-            // }
+            post {
+                always {
+                    junit 'unit-test-results.xml'
+                }
+            }
         }
         
         stage('Start API Server') {
@@ -41,22 +41,22 @@ pipeline {
             steps {
                 bat './lancer_tests_api.bat'
             }
-            // post {
-            //     always {
-            //         junit 'api-test-results.xml'
-            //     }
-            // }
+            post {
+                always {
+                    junit 'api-test-results.xml'
+                }
+            }
         }
         
         stage('UI Tests') {
             steps {
                 bat './lancer_tests_ui.bat'
             }
-            // post {
-            //     always {
-            //         robot outputPath: 'results'
-            //     }
-            // }
+            post {
+                always {
+                    robot outputPath: 'results'
+                }
+            }
         }
     }
     
