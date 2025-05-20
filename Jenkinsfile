@@ -3,12 +3,12 @@ pipeline {
     
     environment {
         PYTHON_VERSION = '3.9'
-        API_URL = 'http://localhost:5000'
-        UI_URL = 'http://livraison3.testacademy.fr'
+        API_URL        = 'http://localhost:5000'
+        UI_URL         = 'http://livraison3.testacademy.fr'
     }
     
     stages {
-        stage('Construction du projet') { // Étape 1 : Installer les dépendances
+        stage('Construction') { // Étape 1 : installer les dépendances
             steps {
                 bat 'python -m pip install --upgrade pip'
                 bat 'pip install -r requirements.txt'
@@ -16,31 +16,31 @@ pipeline {
             }
         }
         
-        stage('Tests unitaires') { // Étape 2 : Lancer les tests unitaires
+        stage('Tests unitaires') { // Étape 2 : exécuter les tests unitaires
             steps {
-                bat './lancer_tests_unitaires.bat || exit /b 1'
+                bat './lancer_tests_unitaires.bat'
             }
         }
         
-        stage('Démarrage du serveur API') { // Étape 3 : Démarrer l’API localement
+        stage('Démarrage du serveur API') { // Étape 3 : lancer l’API en arrière‑plan
             steps {
                 script {
                     bat 'start /B python app.py'
-                    // Attendre le démarrage du serveur (en utilisant ping au lieu de timeout)
+                    // Attendre le démarrage du serveur via ping au lieu de timeout
                     bat 'ping -n 6 127.0.0.1 > nul'
                 }
             }
         }
         
-        stage('Tests de l’API') { // Étape 4 : Exécuter les tests API
+        stage('Tests de l’API') { // Étape 4 : exécuter les tests d’API
             steps {
-                bat './lancer_tests_api.bat || exit /b 1'
+                bat './lancer_tests_api.bat'
             }
         }
         
-        stage('Tests de l’interface utilisateur') { // Étape 5 : Exécuter les tests UI
+        stage('Tests de l’interface utilisateur') { // Étape 5 : exécuter les tests UI
             steps {
-                bat './lancer_tests_ui.bat || exit /b 1'
+                bat './lancer_tests_ui.bat'
             }
         }
     }
