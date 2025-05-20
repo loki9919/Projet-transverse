@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    commun.resource
-
+Suite Teardown     Close All Browsers
 
 *** Test Cases ***
 Le Tableau De Bord Doit Etre Visible Apres Une Connexion Réussie

@@ -3,6 +3,7 @@ Library    SeleniumLibrary
 Resource    commun.resource
 Test Template    Un Message D'Erreur Doit Etre Visible Après Une Connexion Incorrecte
 Test Setup    Ouvrir Le Navigateur Et Accéder A L'Application
+Suite Teardown     Close All Browsers
 
 
 *** Test Cases ***

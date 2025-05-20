@@ -1,150 +1,150 @@
 import unittest
 import json
-from app import app, listings, init_sample_data
+from app import app, annonces, init_donnees_exemple
 
-class HomeyApiUnitTests(unittest.TestCase):
+class HomeyApiTestsUnitaires(unittest.TestCase):
 
     def setUp(self):
-        # Create a test client
+        # Créer un client de test
         self.app = app.test_client()
         self.app.testing = True
         
-        # Reset database before each test
-        listings.clear()
-        init_sample_data()
+        # Réinitialiser la base de données avant chaque test
+        annonces.clear()
+        init_donnees_exemple()
     
-    def test_get_all_listings(self):
-        # Test getting all listings
-        response = self.app.get('/api/listings')
-        data = json.loads(response.data)
+    def test_obtenir_toutes_annonces(self):
+        # Tester l'obtention de toutes les annonces
+        response = self.app.get('/api/annonces')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 200)
-        self.assertIn('listings', data)
-        self.assertEqual(len(data['listings']), 2)  # We initialized with 2 sample listings
+        self.assertIn('annonces', donnees)
+        self.assertEqual(len(donnees['annonces']), 2)  # Nous avons initialisé avec 2 annonces d'exemple
     
-    def test_get_listing(self):
-        # Get a listing ID from the database
-        listing_id = list(listings.keys())[0]
+    def test_obtenir_annonce(self):
+        # Obtenir un ID d'annonce de la base de données
+        id_annonce = list(annonces.keys())[0]
         
-        # Test getting a specific listing
-        response = self.app.get(f'/api/listings/{listing_id}')
-        data = json.loads(response.data)
+        # Tester l'obtention d'une annonce spécifique
+        response = self.app.get(f'/api/annonces/{id_annonce}')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 200)
-        self.assertIn('listing', data)
-        self.assertEqual(data['listing']['id'], listing_id)
+        self.assertIn('annonce', donnees)
+        self.assertEqual(donnees['annonce']['id'], id_annonce)
     
-    def test_get_nonexistent_listing(self):
-        # Test getting a listing that doesn't exist
-        response = self.app.get('/api/listings/nonexistent-id')
-        data = json.loads(response.data)
+    def test_obtenir_annonce_inexistante(self):
+        # Tester l'obtention d'une annonce qui n'existe pas
+        response = self.app.get('/api/annonces/id-inexistant')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 404)
-        self.assertIn('error', data)
+        self.assertIn('erreur', donnees)
     
-    def test_create_listing(self):
-        # Create test data
-        new_listing = {
-            "title": "Mountain Cabin",
-            "location": "Denver, USA",
-            "price_per_night": 120,
-            "description": "Cozy cabin in the mountains",
-            "amenities": ["Fireplace", "Hiking trails"]
+    def test_creer_annonce(self):
+        # Créer des données de test
+        nouvelle_annonce = {
+            "titre": "Cabane en Montagne",
+            "lieu": "Denver, USA",
+            "prix_par_nuit": 120,
+            "description": "Cabane confortable dans les montagnes",
+            "equipements": ["Cheminée", "Sentiers de randonnée"]
         }
         
-        # Test creating a new listing
-        response = self.app.post('/api/listings', 
-                               data=json.dumps(new_listing),
-                               content_type='application/json')
-        data = json.loads(response.data)
+        # Tester la création d'une nouvelle annonce
+        response = self.app.post('/api/annonces', 
+                              data=json.dumps(nouvelle_annonce),
+                              content_type='application/json')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 201)
-        self.assertIn('listing', data)
-        self.assertEqual(data['listing']['title'], new_listing['title'])
+        self.assertIn('annonce', donnees)
+        self.assertEqual(donnees['annonce']['titre'], nouvelle_annonce['titre'])
         
-        # Verify the listing was added to the database
-        self.assertEqual(len(listings), 3)  # 2 sample + 1 new
+        # Vérifier que l'annonce a été ajoutée à la base de données
+        self.assertEqual(len(annonces), 3)  # 2 exemples + 1 nouvelle
     
-    def test_create_listing_missing_fields(self):
-        # Create test data with missing required fields
-        incomplete_listing = {
-            "title": "Incomplete Listing",
-            "location": "Somewhere"
-            # Missing price_per_night and description
+    def test_creer_annonce_champs_manquants(self):
+        # Créer des données de test avec des champs requis manquants
+        annonce_incomplete = {
+            "titre": "Annonce Incomplète",
+            "lieu": "Quelque part"
+            # prix_par_nuit et description manquants
         }
         
-        # Test creating a listing with missing fields
-        response = self.app.post('/api/listings', 
-                               data=json.dumps(incomplete_listing),
-                               content_type='application/json')
-        data = json.loads(response.data)
+        # Tester la création d'une annonce avec des champs manquants
+        response = self.app.post('/api/annonces', 
+                              data=json.dumps(annonce_incomplete),
+                              content_type='application/json')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 400)
-        self.assertIn('error', data)
+        self.assertIn('erreur', donnees)
     
-    def test_update_listing(self):
-        # Get a listing ID from the database
-        listing_id = list(listings.keys())[0]
+    def test_mettre_a_jour_annonce(self):
+        # Obtenir un ID d'annonce de la base de données
+        id_annonce = list(annonces.keys())[0]
         
-        # Create update data
-        update_data = {
-            "title": "Updated Title",
-            "price_per_night": 200
+        # Créer des données de mise à jour
+        donnees_mise_a_jour = {
+            "titre": "Titre Mis à Jour",
+            "prix_par_nuit": 200
         }
         
-        # Test updating a listing
-        response = self.app.put(f'/api/listings/{listing_id}', 
-                              data=json.dumps(update_data),
-                              content_type='application/json')
-        data = json.loads(response.data)
+        # Tester la mise à jour d'une annonce
+        response = self.app.put(f'/api/annonces/{id_annonce}', 
+                             data=json.dumps(donnees_mise_a_jour),
+                             content_type='application/json')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 200)
-        self.assertIn('listing', data)
-        self.assertEqual(data['listing']['title'], update_data['title'])
-        self.assertEqual(data['listing']['price_per_night'], update_data['price_per_night'])
+        self.assertIn('annonce', donnees)
+        self.assertEqual(donnees['annonce']['titre'], donnees_mise_a_jour['titre'])
+        self.assertEqual(donnees['annonce']['prix_par_nuit'], donnees_mise_a_jour['prix_par_nuit'])
     
-    def test_update_nonexistent_listing(self):
-        # Create update data
-        update_data = {"title": "Updated Title"}
+    def test_mettre_a_jour_annonce_inexistante(self):
+        # Créer des données de mise à jour
+        donnees_mise_a_jour = {"titre": "Titre Mis à Jour"}
         
-        # Test updating a listing that doesn't exist
-        response = self.app.put('/api/listings/nonexistent-id', 
-                              data=json.dumps(update_data),
-                              content_type='application/json')
-        data = json.loads(response.data)
+        # Tester la mise à jour d'une annonce qui n'existe pas
+        response = self.app.put('/api/annonces/id-inexistant', 
+                             data=json.dumps(donnees_mise_a_jour),
+                             content_type='application/json')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 404)
-        self.assertIn('error', data)
+        self.assertIn('erreur', donnees)
     
-    def test_delete_listing(self):
-        # Get a listing ID from the database
-        listing_id = list(listings.keys())[0]
+    def test_supprimer_annonce(self):
+        # Obtenir un ID d'annonce de la base de données
+        id_annonce = list(annonces.keys())[0]
         
-        # Test deleting a listing
-        response = self.app.delete(f'/api/listings/{listing_id}')
-        data = json.loads(response.data)
+        # Tester la suppression d'une annonce
+        response = self.app.delete(f'/api/annonces/{id_annonce}')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 200)
-        self.assertIn('message', data)
+        self.assertIn('message', donnees)
         
-        # Verify the listing was removed from the database
-        self.assertEqual(len(listings), 1)  # Started with 2, deleted 1
+        # Vérifier que l'annonce a été supprimée de la base de données
+        self.assertEqual(len(annonces), 1)  # Commencé avec 2, supprimé 1
     
-    def test_delete_nonexistent_listing(self):
-        # Test deleting a listing that doesn't exist
-        response = self.app.delete('/api/listings/nonexistent-id')
-        data = json.loads(response.data)
+    def test_supprimer_annonce_inexistante(self):
+        # Tester la suppression d'une annonce qui n'existe pas
+        response = self.app.delete('/api/annonces/id-inexistant')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 404)
-        self.assertIn('error', data)
+        self.assertIn('erreur', donnees)
     
-    def test_health_check(self):
-        # Test health check endpoint
-        response = self.app.get('/health')
-        data = json.loads(response.data)
+    def test_verification_sante(self):
+        # Tester le point de terminaison de vérification de santé
+        response = self.app.get('/sante')
+        donnees = json.loads(response.data)
         
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['status'], 'healthy')
+        self.assertEqual(donnees['statut'], 'en bonne santé')
 
 if __name__ == '__main__':
     unittest.main()

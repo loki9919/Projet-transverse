@@ -3,111 +3,111 @@ import uuid
 
 app = Flask(__name__)
 
-# In-memory database
-listings = {}
+# Base de données en mémoire
+annonces = {}
 
-# Helper function to generate new listing ID
-def generate_id():
+# Fonction d'aide pour générer un nouvel ID d'annonce
+def generer_id():
     return str(uuid.uuid4())
 
-# Sample data initialization
-def init_sample_data():
-    sample_listings = [
+# Initialisation des données d'exemple
+def init_donnees_exemple():
+    exemples_annonces = [
         {
-            "id": generate_id(),
-            "title": "Cozy Apartment in Paris",
-            "location": "Paris, France",
-            "price_per_night": 100,
-            "description": "Beautiful apartment near Eiffel Tower",
-            "amenities": ["WiFi", "Kitchen", "Air conditioning"]
+            "id": generer_id(),
+            "titre": "Appartement Cosy à Paris",
+            "lieu": "Paris, France",
+            "prix_par_nuit": 100,
+            "description": "Bel appartement près de la Tour Eiffel",
+            "equipements": ["WiFi", "Cuisine", "Climatisation"]
         },
         {
-            "id": generate_id(),
-            "title": "Beach House in Miami",
-            "location": "Miami, USA",
-            "price_per_night": 150,
-            "description": "Relaxing beach house with ocean view",
-            "amenities": ["WiFi", "Pool", "Beach access"]
+            "id": generer_id(),
+            "titre": "Maison de Plage à Miami",
+            "lieu": "Miami, USA",
+            "prix_par_nuit": 150,
+            "description": "Maison de plage relaxante avec vue sur l'océan",
+            "equipements": ["WiFi", "Piscine", "Accès à la plage"]
         }
     ]
     
-    for listing in sample_listings:
-        listings[listing["id"]] = listing
+    for annonce in exemples_annonces:
+        annonces[annonce["id"]] = annonce
 
-init_sample_data()
+init_donnees_exemple()
 
-# GET - Retrieve all listings
-@app.route('/api/listings', methods=['GET'])
-def get_all_listings():
-    return jsonify({"listings": list(listings.values()), "count": len(listings)})
+# GET - Récupérer toutes les annonces
+@app.route('/api/annonces', methods=['GET'])
+def obtenir_toutes_annonces():
+    return jsonify({"annonces": list(annonces.values()), "nombre": len(annonces)})
 
-# GET - Retrieve a specific listing
-@app.route('/api/listings/<listing_id>', methods=['GET'])
-def get_listing(listing_id):
-    if listing_id in listings:
-        return jsonify({"listing": listings[listing_id]})
-    return jsonify({"error": "Listing not found"}), 404
+# GET - Récupérer une annonce spécifique
+@app.route('/api/annonces/<id_annonce>', methods=['GET'])
+def obtenir_annonce(id_annonce):
+    if id_annonce in annonces:
+        return jsonify({"annonce": annonces[id_annonce]})
+    return jsonify({"erreur": "Annonce non trouvée"}), 404
 
-# POST - Create a new listing
-@app.route('/api/listings', methods=['POST'])
-def create_listing():
+# POST - Créer une nouvelle annonce
+@app.route('/api/annonces', methods=['POST'])
+def creer_annonce():
     if not request.json:
-        return jsonify({"error": "Invalid request data"}), 400
+        return jsonify({"erreur": "Données de requête invalides"}), 400
     
-    data = request.json
-    required_fields = ["title", "location", "price_per_night", "description"]
+    donnees = request.json
+    champs_requis = ["titre", "lieu", "prix_par_nuit", "description"]
     
-    for field in required_fields:
-        if field not in data:
-            return jsonify({"error": f"Missing required field: {field}"}), 400
+    for champ in champs_requis:
+        if champ not in donnees:
+            return jsonify({"erreur": f"Champ requis manquant: {champ}"}), 400
     
-    listing_id = generate_id()
+    id_annonce = generer_id()
     
-    new_listing = {
-        "id": listing_id,
-        "title": data["title"],
-        "location": data["location"],
-        "price_per_night": data["price_per_night"],
-        "description": data["description"],
-        "amenities": data.get("amenities", [])
+    nouvelle_annonce = {
+        "id": id_annonce,
+        "titre": donnees["titre"],
+        "lieu": donnees["lieu"],
+        "prix_par_nuit": donnees["prix_par_nuit"],
+        "description": donnees["description"],
+        "equipements": donnees.get("equipements", [])
     }
     
-    listings[listing_id] = new_listing
+    annonces[id_annonce] = nouvelle_annonce
     
-    return jsonify({"message": "Listing created successfully", "listing": new_listing}), 201
+    return jsonify({"message": "Annonce créée avec succès", "annonce": nouvelle_annonce}), 201
 
-# PUT - Update a listing
-@app.route('/api/listings/<listing_id>', methods=['PUT'])
-def update_listing(listing_id):
-    if listing_id not in listings:
-        return jsonify({"error": "Listing not found"}), 404
+# PUT - Mettre à jour une annonce
+@app.route('/api/annonces/<id_annonce>', methods=['PUT'])
+def mettre_a_jour_annonce(id_annonce):
+    if id_annonce not in annonces:
+        return jsonify({"erreur": "Annonce non trouvée"}), 404
     
     if not request.json:
-        return jsonify({"error": "Invalid request data"}), 400
+        return jsonify({"erreur": "Données de requête invalides"}), 400
     
-    data = request.json
+    donnees = request.json
     
-    # Update fields
-    for key in data:
-        if key != "id":  # Don't allow ID to be changed
-            listings[listing_id][key] = data[key]
+    # Mettre à jour les champs
+    for cle in donnees:
+        if cle != "id":  # Ne pas permettre de changer l'ID
+            annonces[id_annonce][cle] = donnees[cle]
     
-    return jsonify({"message": "Listing updated successfully", "listing": listings[listing_id]})
+    return jsonify({"message": "Annonce mise à jour avec succès", "annonce": annonces[id_annonce]})
 
-# DELETE - Remove a listing
-@app.route('/api/listings/<listing_id>', methods=['DELETE'])
-def delete_listing(listing_id):
-    if listing_id not in listings:
-        return jsonify({"error": "Listing not found"}), 404
+# DELETE - Supprimer une annonce
+@app.route('/api/annonces/<id_annonce>', methods=['DELETE'])
+def supprimer_annonce(id_annonce):
+    if id_annonce not in annonces:
+        return jsonify({"erreur": "Annonce non trouvée"}), 404
     
-    deleted_listing = listings.pop(listing_id)
+    annonce_supprimee = annonces.pop(id_annonce)
     
-    return jsonify({"message": "Listing deleted successfully", "listing": deleted_listing})
+    return jsonify({"message": "Annonce supprimée avec succès", "annonce": annonce_supprimee})
 
-# Health check endpoint
-@app.route('/health', methods=['GET'])
-def health_check():
-    return jsonify({"status": "healthy", "message": "Homey API is running"})
+# Point de terminaison de vérification de santé
+@app.route('/sante', methods=['GET'])
+def verification_sante():
+    return jsonify({"statut": "en bonne santé", "message": "L'API Homey fonctionne"})
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
