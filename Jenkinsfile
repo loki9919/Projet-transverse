@@ -31,8 +31,8 @@ pipeline {
             steps {
                 script {
                     bat 'start /B python app.py'
-                    // Allow time for the server to start
-                    bat 'timeout /t 5'
+                    // Allow time for the server to start using ping instead of timeout
+                    bat 'ping -n 6 127.0.0.1 > nul'
                 }
             }
         }
