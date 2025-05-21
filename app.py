@@ -82,6 +82,7 @@ def mettre_a_jour_annonce(id_annonce):
     if id_annonce not in annonces:
         return jsonify({"erreur": "Annonce non trouvée"}), 404
     
+    
     if not request.json:
         return jsonify({"erreur": "Données de requête invalides"}), 400
     
