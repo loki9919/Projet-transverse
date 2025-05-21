@@ -94,6 +94,7 @@ def mettre_a_jour_annonce(id_annonce):
     
     return jsonify({"message": "Annonce mise à jour avec succès", "annonce": annonces[id_annonce]})
 
+
 # DELETE - Supprimer une annonce
 @app.route('/api/annonces/<id_annonce>', methods=['DELETE'])
 def supprimer_annonce(id_annonce):
