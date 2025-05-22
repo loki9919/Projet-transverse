@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import uuid
 
+
 app = Flask(__name__)
 
 # Base de données en mémoire
@@ -83,7 +84,7 @@ def mettre_a_jour_annonce(id_annonce):
         return jsonify({"erreur": "Annonce non trouvée"}), 404
     
 
-    
+
 
     if not request.json:
         return jsonify({"erreur": "Données de requête invalides"}), 400
