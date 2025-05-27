@@ -13,7 +13,7 @@ call lancer_tests_api.bat
 rem Appelle le script des tests API
 if errorlevel 1 exit /b 1
 
-call lancer_tests_ui.bat
+call lancer_tests_ihm.bat
 rem Appelle le script des tests UI
 if errorlevel 1 exit /b 1
 
