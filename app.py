@@ -1,10 +1,7 @@
 from flask import Flask, request, jsonify
 import uuid
 
-
-
 app = Flask(__name__)
-
 
 # Base de données en mémoire
 annonces = {}
