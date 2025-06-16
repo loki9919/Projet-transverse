@@ -93,6 +93,7 @@ class HomeyApiTestsUnitaires(unittest.TestCase):
         }
         
         
+        
         # Tester la mise à jour d'une annonce
         response = self.app.put(f'/api/annonces/{id_annonce}', 
                              data=json.dumps(donnees_mise_a_jour),
