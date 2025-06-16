@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.11.9 on win32)" generated="20250610 04:43:28.103" rpa="false" schemaversion="3">
+<suite id="s1" name="DELETE &amp; GET &amp; POST &amp; PUT">
+<suite id="s1-s1" name="DELETE" source="C:\Users\lokma\Projet-transverse\tests_api\DELETE.robot">
+<test id="s1-s1-t1" name="Test Requete DELETE Supprimer Annonce" line="10">
+<kw name="Create List" library="BuiltIn">
+<var>@{EquipementsTest}</var>
+<arg>Test</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20250610 04:43:28.283" level="INFO">@{EquipementsTest} = [ Test ]</msg>
+<status status="PASS" starttime="20250610 04:43:28.282" endtime="20250610 04:43:28.283"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{Annonce_A_Supprimer}</var>
+<arg>titre=Annonce à Supprimer</arg>
+<arg>lieu=Test City</arg>
+<arg>prix_par_nuit=${50}</arg>
+<arg>description=Cette annonce sera supprimée</arg>
+<arg>equipements=${EquipementsTest}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20250610 04:43:28.284" level="INFO">&amp;{Annonce_A_Supprimer} = { titre=Annonce à Supprimer | lieu=Test City | prix_par_nuit=50 | description=Cette annonce sera supprimée | equipements=['Test'] }</msg>
+<status status="PASS" starttime="20250610 04:43:28.283" endtime="20250610 04:43:28.284"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${ReponseCreation}</var>
+<arg>${Base URL}/api/annonces</arg>
+<arg>json=${Annonce_A_Supprimer}</arg>
+<arg>expected_status=201</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20250610 04:43:32.383" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A728A990&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</msg>
+<status status="FAIL" starttime="20250610 04:43:28.284" endtime="20250610 04:43:32.400"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${AnnonceCreee}</var>
+<arg>${ReponseCreation.json()}</arg>
+<arg>annonce</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.401" endtime="20250610 04:43:32.402"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${IdAnnonce}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.403" endtime="20250610 04:43:32.403"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>ID de l'annonce créée pour suppression: ${IdAnnonce}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.404" endtime="20250610 04:43:32.404"/>
+</kw>
+<kw name="GET" library="RequestsLibrary">
+<var>${ReponseVerificationAvant}</var>
+<arg>${Base URL}/api/annonces/${IdAnnonce}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.405" endtime="20250610 04:43:32.405"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Annonce trouvée avant suppression</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.405" endtime="20250610 04:43:32.406"/>
+</kw>
+<kw name="DELETE" library="RequestsLibrary">
+<var>${ReponseSuppression}</var>
+<arg>${Base URL}/api/annonces/${IdAnnonce}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a DELETE request.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.406" endtime="20250610 04:43:32.406"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ReponseSuppression.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.407" endtime="20250610 04:43:32.407"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${ReponseSuppression.json()}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.408" endtime="20250610 04:43:32.408"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${ReponseSuppression.json()}</arg>
+<arg>annonce</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.409" endtime="20250610 04:43:32.409"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${Message}</var>
+<arg>${ReponseSuppression.json()}</arg>
+<arg>message</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.409" endtime="20250610 04:43:32.409"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${Message}</arg>
+<arg>supprimée avec succès</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.410" endtime="20250610 04:43:32.410"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${AnnonceSupprimee}</var>
+<arg>${ReponseSuppression.json()}</arg>
+<arg>annonce</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.411" endtime="20250610 04:43:32.411"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${IdAnnonceSupprimee}</var>
+<arg>${AnnonceSupprimee}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.411" endtime="20250610 04:43:32.411"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${IdAnnonce}</arg>
+<arg>${IdAnnonceSupprimee}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.412" endtime="20250610 04:43:32.412"/>
+</kw>
+<kw name="GET" library="RequestsLibrary">
+<var>${ReponseVerificationApres}</var>
+<arg>${Base URL}/api/annonces/${IdAnnonce}</arg>
+<arg>expected_status=404</arg>
+<doc>Sends a GET request.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.413" endtime="20250610 04:43:32.413"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Annonce correctement supprimée - erreur 404 attendue</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.414" endtime="20250610 04:43:32.414"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${ReponseVerificationApres.json()}</arg>
+<arg>erreur</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.415" endtime="20250610 04:43:32.415"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${MessageErreur}</var>
+<arg>${ReponseVerificationApres.json()}</arg>
+<arg>erreur</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.415" endtime="20250610 04:43:32.415"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${MessageErreur}</arg>
+<arg>Annonce non trouvée</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:32.416" endtime="20250610 04:43:32.416"/>
+</kw>
+<status status="FAIL" starttime="20250610 04:43:28.282" endtime="20250610 04:43:32.417">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A728A990&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</status>
+</test>
+<status status="FAIL" starttime="20250610 04:43:28.148" endtime="20250610 04:43:32.420"/>
+</suite>
+<suite id="s1-s2" name="GET" source="C:\Users\lokma\Projet-transverse\tests_api\GET.robot">
+<test id="s1-s2-t1" name="Test 001 Requete GET Toutes Annonces" line="10">
+<kw name="GET" library="RequestsLibrary">
+<var>${Reponse}</var>
+<arg>${Base URL}/api/annonces</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20250610 04:43:36.612" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A8386450&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</msg>
+<status status="FAIL" starttime="20250610 04:43:32.541" endtime="20250610 04:43:36.621"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${ReponseJson}</var>
+<arg>${Reponse.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.623" endtime="20250610 04:43:36.623"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ReponseJson}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.625" endtime="20250610 04:43:36.625"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${ReponseJson}</arg>
+<arg>annonces</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.626" endtime="20250610 04:43:36.626"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${ReponseJson}</arg>
+<arg>nombre</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.628" endtime="20250610 04:43:36.628"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${NombreAnnonces}</var>
+<arg>${ReponseJson}</arg>
+<arg>nombre</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.629" endtime="20250610 04:43:36.630"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${NombreAnnonces} &gt;= 2</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.631" endtime="20250610 04:43:36.631"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${ListeAnnonces}</var>
+<arg>${ReponseJson}</arg>
+<arg>annonces</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.633" endtime="20250610 04:43:36.633"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${PremiereAnnonce}</var>
+<arg>${ListeAnnonces}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.634" endtime="20250610 04:43:36.634"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${PremiereAnnonce}</arg>
+<arg>id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.635" endtime="20250610 04:43:36.635"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${PremiereAnnonce}</arg>
+<arg>titre</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.636" endtime="20250610 04:43:36.636"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${PremiereAnnonce}</arg>
+<arg>lieu</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.637" endtime="20250610 04:43:36.637"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${PremiereAnnonce}</arg>
+<arg>prix_par_nuit</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.638" endtime="20250610 04:43:36.638"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${PremiereAnnonce}</arg>
+<arg>description</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.639" endtime="20250610 04:43:36.639"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${PremiereAnnonce}</arg>
+<arg>equipements</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.640" endtime="20250610 04:43:36.640"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${Titre}</var>
+<arg>${PremiereAnnonce}</arg>
+<arg>titre</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.641" endtime="20250610 04:43:36.641"/>
+</kw>
+<kw name="Should Match Regexp" library="BuiltIn">
+<arg>${Titre}</arg>
+<arg>(Paris|Miami|Appartement|Maison)</arg>
+<doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:36.642" endtime="20250610 04:43:36.642"/>
+</kw>
+<status status="FAIL" starttime="20250610 04:43:32.541" endtime="20250610 04:43:36.643">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A8386450&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</status>
+</test>
+<status status="FAIL" starttime="20250610 04:43:32.422" endtime="20250610 04:43:36.646"/>
+</suite>
+<suite id="s1-s3" name="POST" source="C:\Users\lokma\Projet-transverse\tests_api\POST.robot">
+<test id="s1-s3-t1" name="Test Requete POST Creer Annonce" line="14">
+<kw name="Create List" library="BuiltIn">
+<var>@{Equipements}</var>
+<arg>WiFi</arg>
+<arg>Parking</arg>
+<arg>Jardin</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20250610 04:43:36.667" level="INFO">@{Equipements} = [ WiFi | Parking | Jardin ]</msg>
+<status status="PASS" starttime="20250610 04:43:36.667" endtime="20250610 04:43:36.667"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{Corps_Requete}</var>
+<arg>titre=${Titre_Attendu}</arg>
+<arg>lieu=${Lieu_Attendu}</arg>
+<arg>prix_par_nuit=${Prix_Attendu}</arg>
+<arg>description=${Description_Attendue}</arg>
+<arg>equipements=${Equipements}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20250610 04:43:36.668" level="INFO">&amp;{Corps_Requete} = { titre=Villa Test Robot Framework | lieu=Casablanca, Maroc | prix_par_nuit=75 | description=Belle villa pour tests automatisés | equipements=['WiFi', 'Parking', 'Jardin'] }</msg>
+<status status="PASS" starttime="20250610 04:43:36.667" endtime="20250610 04:43:36.668"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${Reponse}</var>
+<arg>${Base URL}/api/annonces</arg>
+<arg>json=${Corps_Requete}</arg>
+<arg>expected_status=201</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20250610 04:43:40.774" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A839E8D0&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</msg>
+<status status="FAIL" starttime="20250610 04:43:36.669" endtime="20250610 04:43:40.779"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${Reponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.780" endtime="20250610 04:43:40.780"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${Reponse.json()}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.781" endtime="20250610 04:43:40.781"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${Reponse.json()}</arg>
+<arg>annonce</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.781" endtime="20250610 04:43:40.782"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${AnnonceCreee}</var>
+<arg>${Reponse.json()}</arg>
+<arg>annonce</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.782" endtime="20250610 04:43:40.782"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${AnnonceCreee}</arg>
+<arg>id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.783" endtime="20250610 04:43:40.783"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${Id}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.784" endtime="20250610 04:43:40.784"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${Id}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.785" endtime="20250610 04:43:40.785"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${titre}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>titre</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.785" endtime="20250610 04:43:40.785"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Titre_Attendu}</arg>
+<arg>${titre}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.786" endtime="20250610 04:43:40.786"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${lieu}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>lieu</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.787" endtime="20250610 04:43:40.787"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Lieu_Attendu}</arg>
+<arg>${lieu}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.787" endtime="20250610 04:43:40.787"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${prix}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>prix_par_nuit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.788" endtime="20250610 04:43:40.788"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${Prix_Attendu}</arg>
+<arg>${prix}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.788" endtime="20250610 04:43:40.788"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${description}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.789" endtime="20250610 04:43:40.789"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Description_Attendue}</arg>
+<arg>${description}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.790" endtime="20250610 04:43:40.790"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${AnnonceCreee}</arg>
+<arg>equipements</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.790" endtime="20250610 04:43:40.791"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${equipements}</var>
+<arg>${AnnonceCreee}</arg>
+<arg>equipements</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.791" endtime="20250610 04:43:40.791"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${equipements}</arg>
+<arg>WiFi</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:40.792" endtime="20250610 04:43:40.792"/>
+</kw>
+<status status="FAIL" starttime="20250610 04:43:36.666" endtime="20250610 04:43:40.793">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A839E8D0&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</status>
+</test>
+<status status="FAIL" starttime="20250610 04:43:36.650" endtime="20250610 04:43:40.795"/>
+</suite>
+<suite id="s1-s4" name="PUT" source="C:\Users\lokma\Projet-transverse\tests_api\PUT.robot">
+<test id="s1-s4-t1" name="Test Requete PUT Mise A Jour Annonce" line="13">
+<kw name="GET" library="RequestsLibrary">
+<var>${ReponseGET}</var>
+<arg>${Base URL}/api/annonces</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20250610 04:43:44.854" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A83B3050&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</msg>
+<status status="FAIL" starttime="20250610 04:43:40.806" endtime="20250610 04:43:44.860"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${ListeAnnonces}</var>
+<arg>${ReponseGET.json()}</arg>
+<arg>annonces</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.860" endtime="20250610 04:43:44.861"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${PremiereAnnonce}</var>
+<arg>${ListeAnnonces}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.862" endtime="20250610 04:43:44.862"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${IdAnnonce}</var>
+<arg>${PremiereAnnonce}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.863" endtime="20250610 04:43:44.863"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>ID de l'annonce à modifier: ${IdAnnonce}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.864" endtime="20250610 04:43:44.864"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{NouveauxEquipements}</var>
+<arg>WiFi</arg>
+<arg>Cuisine équipée</arg>
+<arg>Balcon</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.865" endtime="20250610 04:43:44.865"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{Corps_Requete}</var>
+<arg>titre=${Nouveau_Titre}</arg>
+<arg>prix_par_nuit=${Nouveau_Prix}</arg>
+<arg>description=${Nouvelle_Description}</arg>
+<arg>equipements=${NouveauxEquipements}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.866" endtime="20250610 04:43:44.867"/>
+</kw>
+<kw name="PUT" library="RequestsLibrary">
+<var>${Reponse}</var>
+<arg>${Base URL}/api/annonces/${IdAnnonce}</arg>
+<arg>json=${Corps_Requete}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a PUT request.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.868" endtime="20250610 04:43:44.868"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${Reponse.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.869" endtime="20250610 04:43:44.869"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${Reponse.json()}</arg>
+<arg>message</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.871" endtime="20250610 04:43:44.871"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${Reponse.json()}</arg>
+<arg>annonce</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.872" endtime="20250610 04:43:44.872"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${AnnonceMiseAJour}</var>
+<arg>${Reponse.json()}</arg>
+<arg>annonce</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.873" endtime="20250610 04:43:44.873"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${IdRetourne}</var>
+<arg>${AnnonceMiseAJour}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.874" endtime="20250610 04:43:44.874"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${IdAnnonce}</arg>
+<arg>${IdRetourne}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.875" endtime="20250610 04:43:44.875"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${titre}</var>
+<arg>${AnnonceMiseAJour}</arg>
+<arg>titre</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.876" endtime="20250610 04:43:44.876"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Nouveau_Titre}</arg>
+<arg>${titre}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.877" endtime="20250610 04:43:44.877"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${prix}</var>
+<arg>${AnnonceMiseAJour}</arg>
+<arg>prix_par_nuit</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.878" endtime="20250610 04:43:44.878"/>
+</kw>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${Nouveau_Prix}</arg>
+<arg>${prix}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.880" endtime="20250610 04:43:44.880"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${description}</var>
+<arg>${AnnonceMiseAJour}</arg>
+<arg>description</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.881" endtime="20250610 04:43:44.881"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Nouvelle_Description}</arg>
+<arg>${description}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.882" endtime="20250610 04:43:44.882"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${equipements}</var>
+<arg>${AnnonceMiseAJour}</arg>
+<arg>equipements</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.883" endtime="20250610 04:43:44.883"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${equipements}</arg>
+<arg>Balcon</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.884" endtime="20250610 04:43:44.884"/>
+</kw>
+<kw name="GET" library="RequestsLibrary">
+<var>${ReponseVerification}</var>
+<arg>${Base URL}/api/annonces/${IdAnnonce}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.884" endtime="20250610 04:43:44.885"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${AnnonceVerifiee}</var>
+<arg>${ReponseVerification.json()}</arg>
+<arg>annonce</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.885" endtime="20250610 04:43:44.885"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${TitreVerifie}</var>
+<arg>${AnnonceVerifiee}</arg>
+<arg>titre</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.886" endtime="20250610 04:43:44.886"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${Nouveau_Titre}</arg>
+<arg>${TitreVerifie}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20250610 04:43:44.887" endtime="20250610 04:43:44.887"/>
+</kw>
+<status status="FAIL" starttime="20250610 04:43:40.806" endtime="20250610 04:43:44.888">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /api/annonces (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000283A83B3050&gt;: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))</status>
+</test>
+<status status="FAIL" starttime="20250610 04:43:40.798" endtime="20250610 04:43:44.891"/>
+</suite>
+<status status="FAIL" starttime="20250610 04:43:28.106" endtime="20250610 04:43:44.894"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="4" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="4" skip="0" id="s1" name="DELETE &amp; GET &amp; POST &amp; PUT">DELETE &amp; GET &amp; POST &amp; PUT</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="DELETE">DELETE &amp; GET &amp; POST &amp; PUT.DELETE</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s2" name="GET">DELETE &amp; GET &amp; POST &amp; PUT.GET</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s3" name="POST">DELETE &amp; GET &amp; POST &amp; PUT.POST</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s4" name="PUT">DELETE &amp; GET &amp; POST &amp; PUT.PUT</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
